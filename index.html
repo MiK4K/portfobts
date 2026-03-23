@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRISCIA Enzo - Portfolio BTS SIO SISR</title>
+    <meta name="description" content="Portfolio d'Enzo FRISCIA, étudiant en BTS SIO option SISR au Lycée Victor Hugo">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== VARIABLES CSS ===== */
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #8b5cf6;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --bg-secondary: #1e293b;
+            --bg-light: #334155;
+            --text-light: #f1f5f9;
+            --text-gray: #94a3b8;
+            --text-lighter: #e2e8f0;
+            --accent: #06b6d4;
+            --accent-light: #22d3ee;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --shadow-primary: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 30%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7));
+            z-index: 1;
+        }
+
+        /* ===== TYPOGRAPHIE ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 20%;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-light);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== SECTIONS COMMUNES ===== */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        /* ===== ACCUEIL ===== */
+        #accueil {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #accueil::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent 70%);
+            border-radius: 50%;
+            top: -300px;
+            right: -300px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        #accueil::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid transparent;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent)) border-box;
+            padding: 4px;
+            box-shadow: var(--shadow-primary);
+            position: relative;
+            animation: profilePulse 3s ease infinite;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .profile-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-top: -1rem;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-primary);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
+            transition: width 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* ===== PROFIL ===== */
+        #profil {
+            background: var(--bg-dark);
+        }
+
+        .profil-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .profil-image-container {
+            width: 100%;
+            max-width: 350px;
+            height: 350px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profil-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .profil-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .profil-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .profil-text p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .profil-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .link-btn {
+            padding: 0.8rem 1.8rem;
+            background: var(--bg-secondary);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .link-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        /* ===== COMPÉTENCES TECHNIQUES PROFIL ===== */
+        .competences {
+            margin-top: 3rem;
+        }
+
+        .competences h4 {
+            margin-bottom: 1.5rem;
+            color: var(--text-lighter);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* ===== ENTREPRISE ===== */
+        #entreprise {
+            background: var(--bg-secondary);
+        }
+
+        .entreprise-card {
+            background: var(--bg-dark);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .entreprise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .entreprise-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .entreprise-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            flex-shrink: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .entreprise-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .entreprise-info h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .entreprise-info p {
+            color: var(--text-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .service-item {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .service-item:hover {
+            transform: translateX(10px);
+            border-left-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .service-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .entreprise-image {
+            overflow: hidden;
+            border-radius: 12px;;
+            margin-bottom: 1rem;
+        }
+
+        .entreprise-image img {
+            width: 100%;
+            height: 250%;
+            object-fit: cover;
+    
+        }
+
+        .entreprise-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ===== PROJETS ===== */
+        #projets {
+            background: var(--bg-dark);
+        }
+
+        .projets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .projet-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .projet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .projet-image {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .projet-card:hover .projet-image img {
+            transform: scale(1.1);
+        }
+
+        .projet-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .projet-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .projet-content p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .tag {
+            padding: 0.3rem 1rem;
+            background: var(--bg-dark);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        .project-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .project-details p {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            flex-grow: 0;
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .small-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.2rem;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .small-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* ===== COMPÉTENCES BLOC 1 ===== */
+        #competences {
+            background: var(--bg-dark);
+        }
+
+        .competence-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* ===== VEILLE TECHNOLOGIQUE ===== */
+        #veille {
+            background: var(--bg-secondary);
+        }
+
+        .veille-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .veille-container {
+            background: var(--bg-dark);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .veille-theme {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .article-icon {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-date {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-card h4 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .article-card p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .article-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .article-link:hover {
+            color: var(--accent);
+            gap: 0.8rem;
+        }
+
+        .sources {
+            margin-top: 2rem;
+        }
+
+        .sources h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .sources-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .source-tag {
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            color: var(--text-gray);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .source-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .method-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .method-card h4 {
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+        }
+
+        /* Galerie d'images veille */
+        .veille-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 180px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== CONTACT ===== */
+        #contact {
+            background: var(--bg-dark);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            transform: translateX(10px);
+            border-color: var(--primary-color);
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes profilePulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 15px 50px rgba(59, 130, 246, 0.7); }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .profil-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .profil-image-container {
+                margin: 0 auto;
+            }
+
+            .entreprise-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .veille-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+            }
+
+            .mobile-toggle {
+                display: block;
+                order: 1;
+            }
+
+            .logo {
+                order: 0;
+            }
+
+            nav ul {
+                display: none;
+                width: 100%;
+                order: 2;
+                flex-direction: column;
+                gap: 0;
+                margin-top: 1rem;
+                background: var(--bg-secondary);
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav ul li:last-child a {
+                border-bottom: none;
+            }
+
+            section {
+                padding: 5rem 1rem 3rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .projets-grid,
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .entreprise-card,
+            .veille-container {
+                padding: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .veille-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profil-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .link-btn {
+                justify-content: center;
+            }
+
+            .sources-tags {
+                justify-content: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .profile-image {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        /* ===== UTILITIES ===== */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .lazy-loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+    <nav id="mainNav">
+        <div class="nav-container">
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu mobile">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul id="navMenu">
+                <li><a href="#accueil" class="active">Accueil</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#entreprise">Entreprise</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#veille">Veille</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+<!-- LOGO PORTFOLIO EN HAUT À GAUCHE -->
+<div style="position: fixed; top: 2rem; left: 2rem; z-index: 1001;">
+    <a href="#accueil" style="text-decoration: none;">
+        <span style="font-size: 1.3rem; font-weight: 700; letter-spacing: 0.5px;">
+            <span style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PORTFOLIO</span>
+            <span style="color: var(--text-light);"> FRISCIA</span>
+        </span>
+    </a>
+</div>
+  <!-- ACCUEIL -->
+    <section id="accueil">
+        <div class="container">
+            <div class="hero-content" style="text-align: center; position: relative; z-index: 1; max-width: 900px; margin: 0 auto;">
+                
+              <!-- Photo de profil carrée -->
+<div style="max-width: 400px; margin: 0 auto 2.5rem; border-radius: 20px; overflow: hidden; border: 4px solid transparent; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); padding: 4px; box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);">
+    <img src="https://i.imgur.com/BYDyOTs.png" 
+         alt="Abraham EMMANUEL" 
+         style="width: 100%; height: auto; object-fit: cover; border-radius: 16px; display: block;">
+</div>
+                
+                <!-- Nom -->
+                <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">
+                    Enzo FRISCIA
+                </h1>
+                
+                <!-- Titre -->
+                <p style="font-size: 1.4rem; color: var(--text-light); margin-bottom: 1rem; font-weight: 500;">
+                    Étudiant en BTS SIO option SISR
+                </p>
+                
+                <!-- Description -->
+                <p style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 0.8rem; line-height: 1.6;">
+                    Passionné par les infrastructures réseaux et la cybersécurité
+                </p>
+                
+                <!-- Localisation -->
+                <p style="font-size: 1rem; color: var(--accent); margin-bottom: 3rem;">
+                    Lycée Victor Hugo, Marseille
+                </p>
+
+                <!-- Boutons -->
+                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem;">
+                    <a href="#profil" class="btn" style="display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);">
+                        Découvrir mon parcours
+                    </a>
+                    <a href="#contact" class="btn" style="display: inline-block; padding: 1rem 2.5rem; background: var(--bg-secondary); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; border: 2px solid var(--primary-color);">
+                        Me contacter
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+                    
+                    <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s;">
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem;">2ème année</div>
+                        <div style="color: var(--text-gray); font-size: 1rem;">BTS SIO SISR</div>
+                    </div>
+
+                    <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s;">
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem;">Stage RTM</div>
+                        <div style="color: var(--text-gray); font-size: 1rem;">Equipe de Maintenance Informatique</div>
+                    </div>
+
+                    <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s;">
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--secondary-color); margin-bottom: 0.5rem;">Stage Mairie d'Allauch</div>
+                        <div style="color: var(--text-gray); font-size: 1rem;">Service Informatique</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- PROFIL -->
+    <section id="profil">
+        <div class="container">
+            <h2>Profil</h2>
+            <div class="profil-content">
+                <div class="profil-image-container fade-in">
+                    <img src="https://i.imgur.com/BYDyOTs.png" alt="Abraham EMMANUEL - Photo de profil">
+                </div>
+                <div class="profil-text fade-in">
+                    <h3>À propos de moi</h3>
+                    <p>
+                        Passionné par l'informatique et les technologies réseau depuis mon plus jeune âge, je suis actuellement en 2ème année de BTS SIO option SISR au Lycée Victor Hugo à Marseille. Mon parcours académique et mes expériences pratiques m'ont permis de développer des compétences solides en administration systèmes et réseaux, cybersécurité, virtualisation et support technique.
+                    </p>
+                    <p>
+                        Curieux et autodidacte, je m'intéresse particulièrement aux nouvelles technologies et aux bonnes pratiques en matière de sécurité informatique. J'apprécie les défis techniques et cherche toujours à optimiser les infrastructures pour les rendre plus performantes et sécurisées.
+                    </p>
+
+                    <div class="image-container mt-2" style="height: 180px;">
+                        <img src="https://images.unsplash.com/photo-1623479322729-28b25c16b011?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                             alt="Data center et infrastructure IT">
+                        <div class="image-overlay"></div>
+                    </div>
+
+                    <div class="competences">
+                        <h4>Compétences techniques</h4>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                                <div>Réseaux & VLAN</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div>Cybersécurité</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                                <div>Windows Server</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                                <div>Virtualisation</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon"><i class="fab fa-linux"></i></div>
+                                <div>Linux</div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                                <div>Support Technique</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profil-links">
+                        <a href="https://drive.google.com/uc?export=download&id=1YPcY9ENmow38UgDBo8kJX5fCHjNGgKI9" class="link-btn" download>
+                            <i class="fas fa-download"></i> Télécharger CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <!-- ENTREPRISE / STAGE -->
+    <section id="entreprise">
+        <div class="container">
+            <h2>Mon Stage à la RTM</h2>
+            <div class="entreprise-card">
+                <!-- En-tête avec logo et infos -->
+                <div class="entreprise-header">
+                    <div class="entreprise-logo">
+                        <img src="https://www.rtm.fr/sites/default/files/inline-images/iOS_1024x1024_1x_STORE.png"
+                             alt="Logo Linkt"
+                             style="width: 100%; height: 100%; object-fit: contain; padding: 10px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    </div>
+                    <div class="entreprise-info">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">RTM - Maintenance informatique</h3>
+                        <p style="color: var(--text-gray); margin-bottom: 0.3rem;">📍 RTM - Dépot Centre Bus la Rose</p>
+                        <p style="color: var(--accent); font-weight: 600;">📅 Stage du XX janvier au XX février 2026</p>
+                    </div>
+                </div>
+
+                <!-- Présentation de l'entreprise -->
+                <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid var(--primary-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">
+                        <i class="fas fa-building"></i> Présentation de l'entreprise
+                    </h4>
+                    <p style="color: var(--text-gray); line-height: 1.8; margin-bottom: 1rem;">
+                        <strong style="color: var(--text-light);">La RTM (Régie des Transports Métropolitains)</strong> est l’entreprise publique en charge de l’exploitation des transports en commun à Marseille et dans la métropole Aix-Marseille-Provence. Créée en 1986, elle a pour mission d’assurer la mobilité des usagers en proposant un réseau de transport fiable, accessible et efficace.
+                        La RTM gère un réseau complet composé de deux lignes de métro, de trois lignes de tramway, de nombreuses lignes de bus ainsi que des navettes maritimes. Elle transporte chaque jour plusieurs centaines de milliers de voyageurs.
+                    </p>
+                    <p style="color: var(--text-gray); line-height: 1.8; margin-bottom: 1rem;">
+                        Acteur essentiel du service public, la RTM contribue au développement économique et à la qualité de vie des habitants en facilitant leurs déplacements au quotidien.
+                    </p>
+                </div>
+
+                <!-- Image de l'accueil -->
+                <div style="border-radius: 15px; overflow: hidden; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <img src="https://www.rtm.fr/sites/default/files/inline-images/maintenance1.jpg"
+                         alt="Accueil de l'entreprise Linkt"
+                         style="width: 100%; height: auto; display: block;"
+                         loading="lazy">
+                </div>
+
+                <!-- Missions du stage -->
+                <div style="margin: 3rem 0;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.3rem;">
+                        <i class="fas fa-tasks"></i> Missions réalisées pendant le stage
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                        <div style="background: var(--bg-secondary); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--accent); transition: all 0.3s;">
+                            <p style="color: var(--text-gray); line-height: 1.6;">
+                                ✓ Traitement des tickets clients via l'outil de ticketing interne
+                            </p>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--accent);">
+                            <p style="color: var(--text-gray); line-height: 1.6;">
+                                ✓ Appels sortants : vérifications techniques, redémarrage équipements, tests de connectivité
+                            </p>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--accent);">
+                            <p style="color: var(--text-gray); line-height: 1.6;">
+                                ✓ Remplacement de matériel et diagnostique
+                            </p>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--accent);">
+                            <p style="color: var(--text-gray); line-height: 1.6;">
+                                ✓ Suivi d'interventions techniques sur site avec les techniciens
+                            </p>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--accent);">
+                            <p style="color: var(--text-gray); line-height: 1.6;">
+                                ✓ Dépannage a distance et gestion des incidents
+                            </p>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--accent);">
+                            <p style="color: var(--text-gray); line-height: 1.6;">
+                                ✓ Communication écrite avec les clients via les tickets pour suivre l'évolution des incidents
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                    <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; border-left: 4px solid var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                        <h5 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.1rem;">
+                            <i class="fas fa-bullseye"></i> Objectifs pédagogiques
+                        </h5>
+                        <ul style="color: var(--text-gray); padding-left: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                            <li>Découvrir l'infrastructure d'un opérateur télécom</li>
+                            <li>Maîtriser les outils de support client IT</li>
+                            <li>Comprendre la gestion d'incidents réseau</li>
+                            <li>Développer des compétences en relation client</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Compétences développées -->
+                <h4 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.3rem;">
+                    <i class="fas fa-graduation-cap"></i> Compétences développées
+                </h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem;">
+                    <span style="padding: 0.8rem 1.5rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 25px; color: white; font-weight: 500; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                        🔍 Diagnostic d'incidents réseau
+                    </span>
+                    <span style="padding: 0.8rem 1.5rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 25px; color: white; font-weight: 500; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                        🎫 Gestion de tickets
+                    </span>
+                    <span style="padding: 0.8rem 1.5rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 25px; color: white; font-weight: 500; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                        🎧 Support technique client
+                    </span>
+                    <span style="padding: 0.8rem 1.5rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 25px; color: white; font-weight: 500; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                        💬 Communication professionnelle
+                    </span>
+                    <span style="padding: 0.8rem 1.5rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 25px; color: white; font-weight: 500; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                        🔧 Gestion Windows Serveur
+                    </span>
+                </div>
+
+                <!-- Boutons -->
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="https://www.rtm.fr" target="_blank" class="btn" style="margin: 0.5rem;">
+                        <i class="fas fa-globe"></i> Site web RTM
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- COMPÉTENCES BLOC 1 -->
+    <section id="competences" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2>Compétences du Bloc 1</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Le Bloc 1 "Support et mise à disposition de services informatiques" regroupe l'ensemble des compétences 
+                fondamentales du BTS SIO option SISR pour assurer le bon fonctionnement des infrastructures IT.
+            </p>
+
+            <div class="articles-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+
+                <!-- Compétence 1 -->
+                <div class="article-card" style="background: var(--bg-dark); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); opacity: 0.1; border-radius: 50%;"></div>
+                    <div class="article-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; color: white;">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Gérer le patrimoine informatique</h4>
+                    <p style="color: var(--text-gray); line-height: 1.7;">
+                        Recenser et administrer les équipements, maintenir les ressources informatiques 
+                        de manière organisée et sécurisée pour assurer la continuité de service.
+                    </p>
+                </div>
+
+                <!-- Compétence 2 -->
+                <div class="article-card" style="background: var(--bg-dark); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); opacity: 0.1; border-radius: 50%;"></div>
+                    <div class="article-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; color: white;">
+                        <i class="fas fa-life-ring"></i>
+                    </div>
+                    <h4 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Répondre aux incidents et aux demandes d'assistance</h4>
+                    <p style="color: var(--text-gray); line-height: 1.7;">
+                        Prendre en charge les incidents, diagnostiquer les problèmes, assister les utilisateurs 
+                        et apporter une réponse rapide et adaptée aux dysfonctionnements rencontrés.
+                    </p>
+                </div>
+
+                <!-- Compétence 3 -->
+                <div class="article-card" style="background: var(--bg-dark); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); opacity: 0.1; border-radius: 50%;"></div>
+                    <div class="article-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; color: white;">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h4 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Développer la présence en ligne de l'organisation</h4>
+                    <p style="color: var(--text-gray); line-height: 1.7;">
+                        Participer à la valorisation des activités de l'organisation 
+                        grâce à des outils numériques et une communication digitale adaptée.
+                    </p>
+                </div>
+
+                <!-- Compétence 4 -->
+                <div class="article-card" style="background: var(--bg-dark); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); opacity: 0.1; border-radius: 50%;"></div>
+                    <div class="article-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; color: white;">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h4 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Travailler en mode projet</h4>
+                    <p style="color: var(--text-gray); line-height: 1.7;">
+                        Planifier, organiser et suivre les tâches d'un projet informatique 
+                        en respectant les objectifs, délais et contraintes imposés.
+                    </p>
+                </div>
+
+                <!-- Compétence 5 -->
+                <div class="article-card" style="background: var(--bg-dark); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); opacity: 0.1; border-radius: 50%;"></div>
+                    <div class="article-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; color: white;">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h4 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Mettre à disposition un service informatique</h4>
+                    <p style="color: var(--text-gray); line-height: 1.7;">
+                        Installer, configurer et déployer des services informatiques 
+                        pour les rendre accessibles aux utilisateurs dans des conditions optimales.
+                    </p>
+                </div>
+
+                <!-- Compétence 6 -->
+                <div class="article-card" style="background: var(--bg-dark); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); opacity: 0.1; border-radius: 50%;"></div>
+                    <div class="article-icon" style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; color: white;">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Organiser son développement professionnel</h4>
+                    <p style="color: var(--text-gray); line-height: 1.7;">
+                        Effectuer une veille technologique, développer ses compétences 
+                        et construire progressivement son parcours professionnel.
+                    </p>
+                </div>
+
+            </div>
+
+            
+        </div>
+    </section>
+
+    <!-- VEILLE TECHNOLOGIQUE -->
+<section id="veille" style="background: var(--bg-dark); padding: 8rem 2rem 4rem;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; text-align: center; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Veille Technologique</h2>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Dans le cadre de ma formation en BTS SIO, je réalise une veille technologique continue 
+            pour me tenir informé des dernières évolutions dans le domaine de la cybersécurité et des infrastructures IT.
+        </p>
+
+        <!-- Introduction -->
+        <div style="background: #1e293b; padding: 2rem; border-radius: 15px; margin-bottom: 3rem; border-left: 4px solid #3b82f6;">
+            <h3 style="color: #3b82f6; margin-bottom: 1rem; font-size: 1.3rem;">
+                <i class="fas fa-info-circle"></i> Qu'est-ce que la veille technologique ?
+            </h3>
+            <p style="color: #94a3b8; line-height: 1.8;">
+                La veille technologique consiste à surveiller, collecter et analyser les informations 
+                sur les évolutions technologiques dans un domaine précis. Mon approche repose sur la règle des 
+                <strong style="color: #f1f5f9;">3S</strong> : 
+                <strong style="color: #06b6d4;">Seek</strong> (chercher), 
+                <strong style="color: #06b6d4;">Sense</strong> (donner du sens), 
+                <strong style="color: #06b6d4;">Share</strong> (partager).
+            </p>
+        </div>
+
+        <!-- Mes sujets -->
+        <h3 style="color: #3b82f6; margin-bottom: 2rem; text-align: center; font-size: 1.8rem;">
+            📌 Mes Sujets de Veille
+        </h3>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+            
+            <!-- Sujet 1 : Phishing -->
+            <div style="background: linear-gradient(135deg, #1e293b, #0f172a); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                        🎣
+                    </div>
+                    <div>
+                        <span style="display: inline-block; padding: 0.3rem 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 20px; color: #ef4444; font-size: 0.85rem; font-weight: 600;">1ère ANNÉE</span>
+                        <h4 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 0.5rem;">Les attaques de phishing et leurs évolutions</h4>
+                    </div>
+                </div>
+                <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 1rem;">
+                    Le phishing représente 90% des cyberattaques. Ma veille porte sur l'évolution de ces techniques : 
+                    spear phishing, vishing, smishing, et l'utilisation croissante de l'IA générative pour créer 
+                    des attaques plus sophistiquées et crédibles.
+                </p>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <span style="padding: 0.4rem 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 15px; color: #ef4444; font-size: 0.85rem;">Cybersécurité</span>
+                    <span style="padding: 0.4rem 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 15px; color: #ef4444; font-size: 0.85rem;">IA & Deepfake</span>
+                    <span style="padding: 0.4rem 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 15px; color: #ef4444; font-size: 0.85rem;">Ingénierie sociale</span>
+                </div>
+            </div>
+
+            <!-- Sujet 2 : Passkeys -->
+            <div style="background: linear-gradient(135deg, #1e293b, #0f172a); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #06b6d4, #3b82f6); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                        🔐
+                    </div>
+                    <div>
+                        <span style="display: inline-block; padding: 0.3rem 1rem; background: rgba(6, 182, 212, 0.2); border-radius: 20px; color: #06b6d4; font-size: 0.85rem; font-weight: 600;">2ème ANNÉE</span>
+                        <h4 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 0.5rem;">Le déploiement des Passkeys</h4>
+                    </div>
+                </div>
+                <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 1rem;">
+                    Les passkeys, basées sur le standard FIDO2, remplacent progressivement les mots de passe. 
+                    Adoptées par Apple, Google et Microsoft, elles offrent une authentification sans mot de passe, 
+                    résistante au phishing et plus simple pour les utilisateurs.
+                </p>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <span style="padding: 0.4rem 1rem; background: rgba(6, 182, 212, 0.2); border-radius: 15px; color: #06b6d4; font-size: 0.85rem;">FIDO2</span>
+                    <span style="padding: 0.4rem 1rem; background: rgba(6, 182, 212, 0.2); border-radius: 15px; color: #06b6d4; font-size: 0.85rem;">Passwordless</span>
+                    <span style="padding: 0.4rem 1rem; background: rgba(6, 182, 212, 0.2); border-radius: 15px; color: #06b6d4; font-size: 0.85rem;">Zero Trust</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Articles Phishing -->
+        <h3 style="color: #ef4444; margin-bottom: 2rem; font-size: 1.6rem; display: flex; align-items: center; gap: 1rem;">
+            🎣 Articles : Phishing et évolutions
+        </h3>
+
+        <div style="display: grid; gap: 2rem; margin-bottom: 4rem;">
+            
+            <!-- Article 1 -->
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #ef4444; transition: all 0.3s;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                    <h4 style="color: #f1f5f9; font-size: 1.2rem; flex: 1;">L'IA générative accélère les attaques de phishing</h4>
+                    <span style="padding: 0.3rem 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 15px; color: #ef4444; font-size: 0.8rem; white-space: nowrap;">2024</span>
+                </div>
+                <p style="color: #06b6d4; margin-bottom: 1rem; font-size: 0.9rem;">
+                    📰 Source : ZDNet / Cybersécurité
+                </p>
+                <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 1rem;">
+                    Les cybercriminels utilisent désormais l'IA générative comme ChatGPT pour créer des emails de phishing 
+                    ultra-réalistes, corrigeant automatiquement les fautes et adaptant le ton selon la cible. 
+                    Les attaques deviennent plus crédibles et difficiles à détecter.
+                </p>
+                <div style="background: #0f172a; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <strong style="color: #f1f5f9;">💼 Impact entreprise :</strong>
+                    <p style="color: #94a3b8; margin-top: 0.5rem; line-height: 1.6;">
+                        Les organisations doivent renforcer la sensibilisation des employés et mettre en place 
+                        des solutions d'analyse comportementale pour détecter ces nouvelles formes d'attaques.
+                    </p>
+                </div>
+                <a href="https://www.zdnet.fr" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 500;">
+                    🔗 Lire l'article complet →
+                </a>
+            </div>
+
+            <!-- Article 2 -->
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #ef4444;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                    <h4 style="color: #f1f5f9; font-size: 1.2rem; flex: 1;">Le phishing par deepfake vocal en forte hausse</h4>
+                    <span style="padding: 0.3rem 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 15px; color: #ef4444; font-size: 0.8rem;">2024</span>
+                </div>
+                <p style="color: #06b6d4; margin-bottom: 1rem; font-size: 0.9rem;">
+                    📰 Source : ANSSI / Cybersecurity
+                </p>
+                <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 1rem;">
+                    Le vishing (phishing vocal) atteint un nouveau niveau avec les deepfakes audio permettant 
+                    d'imiter la voix de dirigeants. Des entreprises ont perdu des millions suite à de faux ordres 
+                    de virement vocaux totalement crédibles.
+                </p>
+                <div style="background: #0f172a; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <strong style="color: #f1f5f9;">💼 Impact entreprise :</strong>
+                    <p style="color: #94a3b8; margin-top: 0.5rem; line-height: 1.6;">
+                        Mise en place obligatoire de procédures de validation multi-canal pour les transactions sensibles 
+                        et formation des équipes à identifier les signaux d'alerte.
+                    </p>
+                </div>
+                <a href="https://www.cert.ssi.gouv.fr" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 500;">
+                    🔗 Lire l'article complet →
+                </a>
+            </div>
+
+            <!-- Article 3 -->
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #ef4444;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                    <h4 style="color: #f1f5f9; font-size: 1.2rem; flex: 1;">Spear phishing : les attaques ciblées explosent</h4>
+                    <span style="padding: 0.3rem 1rem; background: rgba(239, 68, 68, 0.2); border-radius: 15px; color: #ef4444; font-size: 0.8rem;">2025</span>
+                </div>
+                <p style="color: #06b6d4; margin-bottom: 1rem; font-size: 0.9rem;">
+                    📰 Source : Le Monde Informatique
+                </p>
+                <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 1rem;">
+                    Le spear phishing (hameçonnage ciblé) progresse de 40% en 2024. Les attaquants collectent 
+                    des données sur LinkedIn et les réseaux sociaux pour personnaliser leurs messages et 
+                    maximiser leurs chances de succès auprès de cibles spécifiques.
+                </p>
+                <div style="background: #0f172a; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <strong style="color: #f1f5f9;">💼 Impact entreprise :</strong>
+                    <p style="color: #94a3b8; margin-top: 0.5rem; line-height: 1.6;">
+                        Les entreprises doivent sensibiliser particulièrement les cadres et dirigeants, 
+                        limiter l'exposition publique des informations sensibles et renforcer l'authentification multi-facteurs.
+                    </p>
+                </div>
+                <a href="https://www.lemondeinformatique.fr" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 500;">
+                    🔗 Lire l'article complet →
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Articles Passkeys -->
+        <h3 style="color: #06b6d4; margin-bottom: 2rem; font-size: 1.6rem; display: flex; align-items: center; gap: 1rem;">
+            🔐 Articles : Passkeys et authentification
+        </h3>
+
+        <div style="display: grid; gap: 2rem; margin-bottom: 4rem;">
+            
+            <!-- Article 1 -->
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #06b6d4;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                    <h4 style="color: #f1f5f9; font-size: 1.2rem; flex: 1;">Apple, Google et Microsoft accélèrent l'adoption des passkeys</h4>
+                    <span style="padding: 0.3rem 1rem; background: rgba(6, 182, 212, 0.2); border-radius: 15px; color: #06b6d4; font-size: 0.8rem;">2024</span>
+                </div>
+                <p style="color: #06b6d4; margin-bottom: 1rem; font-size: 0.9rem;">
+                    📰 Source : Tech industry news
+                </p>
+                <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 1rem;">
+                    Les géants de la tech déploient massivement les passkeys sur leurs plateformes. 
+                    Apple avec iOS 17, Google avec Android 14 et Microsoft avec Windows 11 intègrent nativement 
+                    cette technologie FIDO2 pour éliminer progressivement les mots de passe.
+                </p>
+                <div style="background: #0f172a; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <strong style="color: #f1f5f9;">💼 Impact entreprise :</strong>
+                    <p style="color: #94a3b8; margin-top: 0.5rem; line-height: 1.6;">
+                        Les DSI peuvent désormais planifier une migration vers le passwordless, 
+                        réduisant drastiquement les risques de phishing et les coûts liés à la gestion des mots de passe.
+                    </p>
+                </div>
+                <a href="https://fidoalliance.org" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 500;">
+                    🔗 Lire l'article complet →
+                </a>
+            </div>
+
+            <!-- Article 2 -->
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #06b6d4;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                    <h4 style="color: #f1f5f9; font-size: 1.2rem; flex: 1;">Les passkeys sont-elles vraiment résistantes au phishing ?</h4>
+                    <span style="padding: 0.3rem 1rem; background: rgba(6, 182, 212, 0.2); border-radius: 15px; color: #06b6d4; font-size: 0.8rem;">2025</span>
+                </div>
+                <p style="color: #06b6d4; margin-bottom: 1rem; font-size: 0.9rem;">
+                    📰 Source : Cybersecurity experts
+                </p>
+                <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 1rem;">
+                    Contrairement aux mots de passe, les passkeys ne peuvent pas être volées par phishing 
+                    car elles utilisent la cryptographie à clé publique. Même si un utilisateur est trompé, 
+                    l'attaquant ne récupère aucune information réutilisable.
+                </p>
+                <div style="background: #0f172a; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <strong style="color: #f1f5f9;">💼 Impact entreprise :</strong>
+                    <p style="color: #94a3b8; margin-top: 0.5rem; line-height: 1.6;">
+                        Solution idéale pour sécuriser les accès sensibles et protéger contre le credential stuffing. 
+                        Particulièrement recommandé pour les comptes à privilèges et les services critiques.
+                    </p>
+                </div>
+                <a href="https://www.csoonline.com" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 500;">
+                    🔗 Lire l'article complet →
+                </a>
+            </div>
+
+            <!-- Article 3 -->
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #06b6d4;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                    <h4 style="color: #f1f5f9; font-size: 1.2rem; flex: 1;">Comment migrer vers les passkeys en entreprise</h4>
+                    <span style="padding: 0.3rem 1rem; background: rgba(6, 182, 212, 0.2); border-radius: 15px; color: #06b6d4; font-size: 0.8rem;">2024</span>
+                </div>
+                <p style="color: #06b6d4; margin-bottom: 1rem; font-size: 0.9rem;">
+                    📰 Source : IT Pro / Enterprise security
+                </p>
+                <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 1rem;">
+                    Guide pratique pour les DSI : inventaire des systèmes compatibles FIDO2, formation des utilisateurs, 
+                    déploiement progressif et gestion des exceptions. La migration doit être planifiée sur 12 à 18 mois 
+                    pour garantir une adoption réussie.
+                </p>
+                <div style="background: #0f172a; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <strong style="color: #f1f5f9;">💼 Impact entreprise :</strong>
+                    <p style="color: #94a3b8; margin-top: 0.5rem; line-height: 1.6;">
+                        Réduction de 99% des attaques par phishing, diminution des coûts de support (reset de mots de passe), 
+                        amélioration de l'expérience utilisateur et conformité renforcée aux normes de sécurité.
+                    </p>
+                </div>
+                <a href="https://www.itpro.com" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 500;">
+                    🔗 Lire l'article complet →
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Méthodologie -->
+        <h3 style="color: #3b82f6; margin-bottom: 2rem; text-align: center; font-size: 1.8rem;">
+            🛠️ Ma Méthodologie de Veille
+        </h3>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #3b82f6;">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🔍</div>
+                <h4 style="color: #f1f5f9; margin-bottom: 1rem;">1. Recherche (Seek)</h4>
+                <p style="color: #94a3b8; line-height: 1.7;">
+                    Consultation quotidienne de sources spécialisées : ANSSI, CERT-FR, ZDNet, blogs cybersécurité, 
+                    forums et réseaux sociaux professionnels.
+                </p>
+            </div>
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #06b6d4;">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">📊</div>
+                <h4 style="color: #f1f5f9; margin-bottom: 1rem;">2. Analyse (Sense)</h4>
+                <p style="color: #94a3b8; line-height: 1.7;">
+                    Sélection des articles pertinents, réalisation de synthèses et analyse de l'impact 
+                    potentiel sur les organisations.
+                </p>
+            </div>
+            <div style="background: #1e293b; padding: 2rem; border-radius: 15px; border-left: 4px solid #8b5cf6;">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">📤</div>
+                <h4 style="color: #f1f5f9; margin-bottom: 1rem;">3. Partage (Share)</h4>
+                <p style="color: #94a3b8; line-height: 1.7;">
+                    Documentation dans mon portfolio, partage avec mes pairs et présentation 
+                    lors des évaluations de compétences.
+                </p>
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div style="background: #1e293b; padding: 2.5rem; border-radius: 20px;">
+            <h4 style="color: #3b82f6; margin-bottom: 1.5rem; text-align: center; font-size: 1.3rem;">
+                📚 Mes Sources de Veille
+            </h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">ANSSI</span>
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">CERT-FR</span>
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">ZDNet</span>
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">Le Monde Informatique</span>
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">Bleeping Computer</span>
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">FIDO Alliance</span>
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">LinkedIn</span>
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">Google Alerts</span>
+                <span style="padding: 0.6rem 1.2rem; background: #0f172a; border-radius: 20px; color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.2);">Feedly</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <h2>Me Contacter</h2>
+            <div class="contact-container">
+                <div class="contact-info fade-in">
+                    <h3>Restons en contact</h3>
+                    <p>
+                        N'hésitez pas à me contacter pour toute opportunité professionnelle, stage, alternance ou question concernant mon profil. Je serai ravi d'échanger avec vous !
+                    </p>
+
+                    <div class="image-container mt-2" style="height: 200px;">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                             alt="Collaboration et travail d'équipe IT"
+                             class="lazy-load"
+                             loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="mailto:Abraham.emma1906@gmail.com" class="social-link">
+                            <div class="social-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <strong>Email</strong><br>
+                                <span>enzo.friscia8@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="tel:+33775790383" class="social-link">
+                            <div class="social-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <strong>Téléphone</strong><br>
+                                <span>06 51 80 89 65</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form fade-in" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nom complet *</label>
+                        <input type="text" id="name" name="name" required placeholder="Votre nom et prénom">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet</label>
+                        <input type="text" id="subject" name="subject" placeholder="Objet de votre message">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Votre message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i> Envoyer le message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <i class="fas fa-code logo-icon"></i>
+                <span>Enzo FRISCIA</span>
+            </div>
+            <p>Étudiant en BTS SIO option SISR • Lycée Victor Hugo, Marseille</p>
+
+
+            <div class="footer-links">
+                <a href="#accueil">Accueil</a>
+                <a href="#profil">Profil</a>
+                <a href="#entreprise">Entreprise</a>
+                <a href="#competences">Compétences</a>
+                <a href="#veille">Veille</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Abraham EMMANUEL - BTS SIO SISR - Tous droits réservés
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <a href="#accueil" class="scroll-to-top" id="scrollToTop" aria-label="Remonter en haut">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script>
+        // Navigation mobile
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Fermer le menu mobile au clic sur un lien
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Effet actif sur la navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const scrollToTop = document.getElementById('scrollToTop');
+
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                scrollToTop.classList.add('visible');
+            } else {
+                scrollToTop.classList.remove('visible');
+            }
+
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Gestion du formulaire de contact
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            console.log('Données du formulaire:', data);
+
+            alert('Merci pour votre message ! Je vous répondrai dans les plus brefs délais.\n\nPour un contact immédiat, vous pouvez également m\\'appeler au 07 75 79 03 83.');
+            this.reset();
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+
+                    if (entry.target.tagName === 'IMG' && entry.target.classList.contains('lazy-load')) {
+                        entry.target.classList.add('lazy-loaded');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.profil-image-container, .projet-card, .article-card, .entreprise-card, .contact-info, .contact-form, .veille-container, .image-container img').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Lazy loading des images
+        const lazyImages = document.querySelectorAll('img.lazy-load');
+
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('lazy-loaded');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        } else {
+            lazyImages.forEach(img => {
+                img.classList.add('lazy-loaded');
+            });
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.hero-content').forEach(el => {
+                el.classList.add('fade-in');
+            });
+
+            document.querySelectorAll('#accueil img').forEach(img => {
+                img.classList.add('lazy-loaded');
+            });
+        });
+    </script>
+</body>
+</html>
